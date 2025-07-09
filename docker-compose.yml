@@ -7,19 +7,19 @@ services:
     build:
       context: .
     volumes:
-      - ./logs:/var/www/html/logs  # Логи приложения будут сохраняться в локальную папку
+      - ./logs:/var/www/html/logs  
     ports:
       - "${PORTS}"
     environment:
       DOMAIN: "${DOMAIN}"
     env_file:
       - .env
-    logging: # Добавляем логирование в AWS
+    logging: 
       driver: awslogs
       options:
-        awslogs-group: "${AWS_LOG_GROUP}" # Название группы логов
-        awslogs-region: "${AWS_REGION}"  # Регион AWS
-        awslogs-stream: "support-time-elest.io/access.log"   # Поток логов для контейнера
+        awslogs-group: "${AWS_LOG_GROUP}" 
+        awslogs-region: "${AWS_REGION}"  
+        awslogs-stream: "support-time-elest.io/access.log"   
   support-time-app-log:
     image: busybox
     volumes:
